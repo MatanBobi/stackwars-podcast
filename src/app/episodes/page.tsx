@@ -17,19 +17,23 @@ export default async function EpisodesPage() {
     <div className="min-h-screen py-16 relative">
       {/* Background accent */}
       <div className="absolute top-0 left-0 right-0 h-80 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
-      
+
       <div className="container mx-auto px-4 relative">
         {/* Header */}
         <div className="max-w-3xl mb-16 animate-slide-up">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-[2px] bg-gradient-to-r from-primary to-transparent" />
-            <span className="text-sm text-primary font-semibold uppercase tracking-wider">Archive</span>
+            <span className="text-sm text-primary font-semibold uppercase tracking-wider">
+              Archive
+            </span>
           </div>
-          <h1 className="text-5xl font-bold gradient-text-animated mb-6">All Episodes</h1>
+          <h1 className="text-5xl font-bold gradient-text-animated mb-6">
+            All Episodes
+          </h1>
           <p className="text-lg text-muted-foreground/90 leading-relaxed">
             Dive into our archive of tech battles, framework face-offs, and
-            stack showdowns. Each episode explores the pros, cons, and passionate
-            debates around the tools developers use every day.
+            stack showdowns. Each episode explores the pros, cons, and
+            passionate debates around the tools developers use every day.
           </p>
         </div>
 
@@ -37,7 +41,11 @@ export default async function EpisodesPage() {
         {episodes.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {episodes.map((episode, index) => (
-              <div key={episode.id} className="animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+              <div
+                key={episode.id}
+                className="animate-slide-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <EpisodeCard episode={episode} />
               </div>
             ))}
@@ -64,12 +72,12 @@ export default async function EpisodesPage() {
                 No Episodes Yet
               </h2>
               <p className="text-muted-foreground/80 mb-6 leading-relaxed">
-                We&apos;re working on bringing you amazing content. Check back soon
-                for our first episode!
+                We&apos;re working on bringing you amazing content. Check back
+                soon for our first episode!
               </p>
               <p className="text-sm text-muted-foreground/60">
-                If you&apos;re the site owner, configure your RSS feed URL in the
-                environment variables.
+                If you&apos;re the site owner, configure your RSS feed URL in
+                the environment variables.
               </p>
             </div>
           </div>
@@ -79,7 +87,8 @@ export default async function EpisodesPage() {
         {episodes.length > 0 && (
           <div className="mt-16 text-center">
             <span className="text-sm text-muted-foreground/60 px-6 py-3 rounded-full bg-secondary/30 border border-primary/10">
-              Showing {episodes.length} episode{episodes.length !== 1 ? "s" : ""}
+              Showing {episodes.length} episode
+              {episodes.length !== 1 ? "s" : ""}
             </span>
           </div>
         )}

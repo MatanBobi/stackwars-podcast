@@ -29,7 +29,12 @@ type CustomItem = {
 const parser: Parser<CustomFeed, CustomItem> = new Parser({
   customFields: {
     feed: ["itunes:author", "itunes:image", "itunes:owner"],
-    item: ["itunes:duration", "itunes:image", "itunes:episode", "itunes:season"],
+    item: [
+      "itunes:duration",
+      "itunes:image",
+      "itunes:episode",
+      "itunes:season",
+    ],
   },
 });
 
@@ -46,18 +51,18 @@ function generateSlug(title: string, index: number): string {
 
 function formatDuration(duration: string | undefined): string {
   if (!duration) return "Unknown";
-  
+
   // If already in HH:MM:SS or MM:SS format
   if (duration.includes(":")) return duration;
-  
+
   // If in seconds, convert to MM:SS or HH:MM:SS
   const seconds = parseInt(duration, 10);
   if (isNaN(seconds)) return duration;
-  
+
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const secs = seconds % 60;
-  
+
   if (hours > 0) {
     return `${hours}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   }
@@ -67,7 +72,7 @@ function formatDuration(duration: string | undefined): string {
 export async function fetchPodcastFeed(): Promise<PodcastFeed> {
   try {
     const feed = await parser.parseURL(RSS_FEED_URL);
-    
+
     const episodes: Episode[] = (feed.items || []).map((item, index) => ({
       id: item.guid || `episode-${index}`,
       slug: generateSlug(item.title || "", index),
@@ -77,9 +82,16 @@ export async function fetchPodcastFeed(): Promise<PodcastFeed> {
       pubDate: item.pubDate || new Date().toISOString(),
       duration: formatDuration(item["itunes:duration"]),
       audioUrl: item.enclosure?.url || "",
-      imageUrl: item["itunes:image"]?.href || feed["itunes:image"]?.href || feed.image?.url,
-      episodeNumber: item["itunes:episode"] ? parseInt(item["itunes:episode"], 10) : undefined,
-      season: item["itunes:season"] ? parseInt(item["itunes:season"], 10) : undefined,
+      imageUrl:
+        item["itunes:image"]?.href ||
+        feed["itunes:image"]?.href ||
+        feed.image?.url,
+      episodeNumber: item["itunes:episode"]
+        ? parseInt(item["itunes:episode"], 10)
+        : undefined,
+      season: item["itunes:season"]
+        ? parseInt(item["itunes:season"], 10)
+        : undefined,
     }));
 
     return {
@@ -108,7 +120,9 @@ export async function getEpisodes(): Promise<Episode[]> {
   return feed.episodes;
 }
 
-export async function getEpisodeBySlug(slug: string): Promise<Episode | undefined> {
+export async function getEpisodeBySlug(
+  slug: string
+): Promise<Episode | undefined> {
   const episodes = await getEpisodes();
   return episodes.find((ep) => ep.slug === slug);
 }

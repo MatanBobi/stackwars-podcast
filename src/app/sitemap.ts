@@ -3,10 +3,10 @@ import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://stackwars.dev";
-  
+
   // Get all episodes for dynamic routes
   const episodes = await getEpisodes();
-  
+
   const episodeUrls = episodes.map((episode) => ({
     url: `${baseUrl}/episodes/${episode.slug}`,
     lastModified: new Date(episode.pubDate),

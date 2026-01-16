@@ -60,13 +60,13 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,184,0,0.15)_0%,_transparent_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_rgba(255,184,0,0.05)_0%,_transparent_40%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_rgba(255,184,0,0.05)_0%,_transparent_40%)]" />
-        
+
         {/* Decorative corner accents */}
         <div className="absolute top-20 left-10 w-20 h-[1px] bg-gradient-to-r from-primary/50 to-transparent" />
         <div className="absolute top-20 left-10 w-[1px] h-20 bg-gradient-to-b from-primary/50 to-transparent" />
         <div className="absolute bottom-20 right-10 w-20 h-[1px] bg-gradient-to-l from-primary/50 to-transparent" />
         <div className="absolute bottom-20 right-10 w-[1px] h-20 bg-gradient-to-t from-primary/50 to-transparent" />
-        
+
         <div className="container mx-auto px-4 relative">
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
             {/* Logo */}
@@ -86,13 +86,19 @@ export default async function HomePage() {
             <h1 className="sr-only">Stack Wars Podcast</h1>
 
             {/* Tagline */}
-            <p className="text-xl lg:text-2xl text-muted-foreground/90 mb-12 max-w-2xl animate-slide-up leading-relaxed" style={{ animationDelay: '0.2s' }}>
+            <p
+              className="text-xl lg:text-2xl text-muted-foreground/90 mb-12 max-w-2xl animate-slide-up leading-relaxed"
+              style={{ animationDelay: "0.2s" }}
+            >
               A podcast exploring the endless battles between technology stacks,
               frameworks, and the developers who love them.
             </p>
 
             {/* Platform Links */}
-            <div className="flex flex-wrap justify-center gap-6 mb-14 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+            <div
+              className="flex flex-wrap justify-center gap-6 mb-14 animate-slide-up"
+              style={{ animationDelay: "0.4s" }}
+            >
               {platformLinks.map((platform) => (
                 <a
                   key={platform.name}
@@ -109,11 +115,23 @@ export default async function HomePage() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-5 animate-slide-up" style={{ animationDelay: '0.6s' }}>
-              <Button asChild size="lg" className="text-lg px-8 py-6 font-semibold tracking-wide shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300">
+            <div
+              className="flex flex-col sm:flex-row gap-5 animate-slide-up"
+              style={{ animationDelay: "0.6s" }}
+            >
+              <Button
+                asChild
+                size="lg"
+                className="text-lg px-8 py-6 font-semibold tracking-wide shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300"
+              >
                 <Link href="/episodes">Browse Episodes</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6 font-semibold tracking-wide border-2 hover:bg-primary/10 transition-all duration-300">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="text-lg px-8 py-6 font-semibold tracking-wide border-2 hover:bg-primary/10 transition-all duration-300"
+              >
                 <Link href="/about">About the Show</Link>
               </Button>
             </div>
@@ -125,26 +143,35 @@ export default async function HomePage() {
       <section className="py-28 bg-gradient-to-b from-secondary/50 via-secondary/20 to-transparent relative">
         {/* Section top divider */}
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        
+
         <div className="container mx-auto px-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-16 gap-4">
             <div className="flex items-center gap-4">
               {/* Decorative element */}
               <div className="hidden sm:block w-12 h-[2px] bg-gradient-to-r from-primary to-transparent" />
-              <h2 className="text-4xl lg:text-5xl font-bold gradient-text-animated">Latest Episodes</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold gradient-text-animated">
+                Latest Episodes
+              </h2>
             </div>
             <Link
               href="/episodes"
               className="group text-sm text-muted-foreground hover:text-primary transition-all duration-300 flex items-center gap-2 px-4 py-2 rounded-full border border-transparent hover:border-primary/30 hover:bg-primary/5"
             >
-              View all episodes <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">→</span>
+              View all episodes{" "}
+              <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
           </div>
 
           {latestEpisodes.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {latestEpisodes.map((episode, index) => (
-                <div key={episode.id} className="animate-slide-up" style={{ animationDelay: `${index * 0.2}s` }}>
+                <div
+                  key={episode.id}
+                  className="animate-slide-up"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
                   <EpisodeCard episode={episode} />
                 </div>
               ))}
@@ -152,8 +179,18 @@ export default async function HomePage() {
           ) : (
             <div className="text-center py-20">
               <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-secondary/50 flex items-center justify-center">
-                <svg className="w-10 h-10 text-primary/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                <svg
+                  className="w-10 h-10 text-primary/50"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                  />
                 </svg>
               </div>
               <p className="text-muted-foreground text-lg">
@@ -171,13 +208,23 @@ export default async function HomePage() {
       <section className="py-24 relative">
         {/* Decorative background */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-        
+
         <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-3 mb-6">
               <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-primary/50" />
-              <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              <svg
+                className="w-6 h-6 text-primary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                />
               </svg>
               <div className="w-8 h-[1px] bg-gradient-to-l from-transparent to-primary/50" />
             </div>
@@ -201,7 +248,9 @@ export default async function HomePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <span className="w-5 h-5 group-hover:scale-110 transition-transform duration-300">{platform.icon}</span>
+                    <span className="w-5 h-5 group-hover:scale-110 transition-transform duration-300">
+                      {platform.icon}
+                    </span>
                     {platform.name}
                   </a>
                 </Button>

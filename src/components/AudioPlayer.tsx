@@ -81,7 +81,7 @@ export function AudioPlayer({ src, title }: AudioPlayerProps) {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = Math.floor(time % 60);
-    
+
     if (hours > 0) {
       return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
     }
@@ -92,11 +92,13 @@ export function AudioPlayer({ src, title }: AudioPlayerProps) {
     <div className="w-full audio-player-container rounded-2xl p-8 space-y-6 relative overflow-hidden">
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-      
+
       <audio ref={audioRef} src={src} preload="metadata" />
-      
+
       {/* Title */}
-      <p className="text-sm text-muted-foreground truncate relative font-medium">{title}</p>
+      <p className="text-sm text-muted-foreground truncate relative font-medium">
+        {title}
+      </p>
 
       {/* Progress Bar */}
       <div className="space-y-3 relative">
@@ -127,10 +129,22 @@ export function AudioPlayer({ src, title }: AudioPlayerProps) {
           className="text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 group relative"
           aria-label="Skip back 15 seconds"
         >
-          <svg className="w-6 h-6 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
+          <svg
+            className="w-6 h-6 transition-transform group-hover:scale-110"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"
+            />
           </svg>
-          <span className="absolute -bottom-4 text-[10px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">-15s</span>
+          <span className="absolute -bottom-4 text-[10px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+            -15s
+          </span>
         </Button>
 
         {/* Play/Pause */}
@@ -145,7 +159,11 @@ export function AudioPlayer({ src, title }: AudioPlayerProps) {
               <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
             </svg>
           ) : (
-            <svg className="w-7 h-7 ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-7 h-7 ml-1"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path d="M8 5v14l11-7z" />
             </svg>
           )}
@@ -159,10 +177,22 @@ export function AudioPlayer({ src, title }: AudioPlayerProps) {
           className="text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 group relative"
           aria-label="Skip forward 30 seconds"
         >
-          <svg className="w-6 h-6 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z" />
+          <svg
+            className="w-6 h-6 transition-transform group-hover:scale-110"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z"
+            />
           </svg>
-          <span className="absolute -bottom-4 text-[10px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">+30s</span>
+          <span className="absolute -bottom-4 text-[10px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+            +30s
+          </span>
         </Button>
       </div>
 
@@ -180,8 +210,18 @@ export function AudioPlayer({ src, title }: AudioPlayerProps) {
 
         {/* Volume */}
         <div className="flex items-center gap-3">
-          <svg className="w-5 h-5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          <svg
+            className="w-5 h-5 text-muted-foreground"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+            />
           </svg>
           <input
             type="range"

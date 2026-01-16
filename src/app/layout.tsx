@@ -21,7 +21,13 @@ export const metadata: Metadata = {
   },
   description:
     "A podcast exploring the endless battles between technology stacks, frameworks, and the developers who love them.",
-  keywords: ["podcast", "technology", "programming", "software development", "tech stacks"],
+  keywords: [
+    "podcast",
+    "technology",
+    "programming",
+    "software development",
+    "tech stacks",
+  ],
   authors: [{ name: "Stack Wars Podcast" }],
   openGraph: {
     type: "website",

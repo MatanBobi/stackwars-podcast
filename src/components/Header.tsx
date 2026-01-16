@@ -12,14 +12,14 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/90 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
       {/* Top gold accent line */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-      
+
       <div className="container mx-auto flex h-18 items-center justify-between px-4 py-4">
         <Link href="/" className="flex items-center space-x-3 group">
           {/* Logo icon */}
           <div className="relative">
             <div className="absolute inset-0 bg-primary/20 blur-xl group-hover:bg-primary/40 transition-all duration-500" />
-            <svg 
-              viewBox="0 0 24 24" 
+            <svg
+              viewBox="0 0 24 24"
               className="relative w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-300"
               fill="currentColor"
             >
@@ -43,7 +43,7 @@ export function Header() {
         </nav>
         <MobileNav />
       </div>
-      
+
       {/* Bottom subtle gradient line */}
       <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
     </header>

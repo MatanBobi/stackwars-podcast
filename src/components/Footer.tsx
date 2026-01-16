@@ -67,7 +67,7 @@ export function Footer() {
     <footer className="relative border-t border-primary/20 bg-gradient-to-b from-background to-secondary/20">
       {/* Top gradient line */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-      
+
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
@@ -75,8 +75,8 @@ export function Footer() {
             <Link href="/" className="inline-flex items-center gap-3 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-primary/20 blur-lg group-hover:bg-primary/30 transition-all duration-500" />
-                <svg 
-                  viewBox="0 0 24 24" 
+                <svg
+                  viewBox="0 0 24 24"
                   className="relative w-6 h-6 text-primary"
                   fill="currentColor"
                 >
@@ -146,7 +146,8 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-xs text-muted-foreground/60">
-            © {new Date().getFullYear()} Stack Wars Podcast. All rights reserved.
+            © {new Date().getFullYear()} Stack Wars Podcast. All rights
+            reserved.
           </p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
