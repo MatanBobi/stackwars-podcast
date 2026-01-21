@@ -8,7 +8,7 @@ interface EpisodeCardProps {
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("he-IL", {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -29,8 +29,8 @@ export function EpisodeCard({ episode }: EpisodeCardProps) {
 
         {/* Episode number badge */}
         {episode.episodeNumber && (
-          <div className="absolute -top-1 -right-1 w-20 h-20 overflow-hidden">
-            <div className="absolute top-4 right-[-30px] w-[100px] text-center bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-black text-sm py-1 transform rotate-45 shadow-lg">
+          <div className="absolute -top-1 -left-1 w-20 h-20 overflow-hidden">
+            <div className="absolute top-4 left-[-30px] w-[100px] text-center bg-gradient-to-l from-primary to-primary/80 text-primary-foreground font-black text-sm py-1 transform -rotate-45 shadow-lg">
               #{episode.episodeNumber}
             </div>
           </div>
@@ -71,7 +71,7 @@ export function EpisodeCard({ episode }: EpisodeCardProps) {
               {episode.duration}
             </span>
           </div>
-          <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-all duration-300 line-clamp-2 pr-12 group-hover:translate-x-1">
+          <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-all duration-300 line-clamp-2 pl-12 group-hover:-translate-x-1">
             {episode.title}
           </h3>
         </CardHeader>
@@ -91,7 +91,7 @@ export function EpisodeCard({ episode }: EpisodeCardProps) {
               </svg>
             </div>
             <span className="text-sm font-semibold tracking-wide">
-              Listen now
+              האזינו עכשיו
             </span>
           </div>
         </CardContent>

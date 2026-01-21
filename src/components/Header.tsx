@@ -1,10 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/episodes", label: "Episodes" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "בית" },
+  { href: "/episodes", label: "פרקים" },
+  { href: "/about", label: "אודות" },
+  { href: "/contact", label: "צור קשר" },
 ];
 
 export function Header() {
@@ -14,23 +15,18 @@ export function Header() {
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
       <div className="container mx-auto flex h-18 items-center justify-between px-4 py-4">
-        <Link href="/" className="flex items-center space-x-3 group">
-          {/* Logo icon */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-primary/20 blur-xl group-hover:bg-primary/40 transition-all duration-500" />
-            <svg
-              viewBox="0 0 24 24"
-              className="relative w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-300"
-              fill="currentColor"
-            >
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
-          </div>
+        <Link href="/" className="flex items-center group">
           <span className="text-2xl font-black tracking-[0.2em] text-primary logo-glow sw-title">
-            STACK WARS
+            <Image
+              src="/logo.png"
+              alt="Stack Wars Podcast"
+              width={48}
+              height={48}
+              priority
+            />
           </span>
         </Link>
-        <nav className="hidden md:flex items-center space-x-10">
+        <nav className="hidden md:flex items-center gap-10">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -68,7 +64,7 @@ function MobileNav() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-base font-semibold text-muted-foreground transition-all duration-300 hover:text-primary hover:translate-x-2 uppercase tracking-wider"
+              className="text-base font-semibold text-muted-foreground transition-all duration-300 hover:text-primary hover:-translate-x-2 uppercase tracking-wider"
             >
               {item.label}
             </Link>

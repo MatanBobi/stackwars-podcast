@@ -3,9 +3,9 @@ import { EpisodeCard } from "@/components/EpisodeCard";
 import { getEpisodes } from "@/lib/rss";
 
 export const metadata: Metadata = {
-  title: "All Episodes",
+  title: "כל הפרקים",
   description:
-    "Browse all episodes of Stack Wars Podcast - exploring the battles between technology stacks and frameworks.",
+    "עיינו בכל הפרקים של Stack Wars פודקאסט - חקירת הקרבות בין טכנולוגיות ופריימוורקים.",
 };
 
 export const revalidate = 3600; // Revalidate every hour
@@ -22,18 +22,18 @@ export default async function EpisodesPage() {
         {/* Header */}
         <div className="max-w-3xl mb-16 animate-slide-up">
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-[2px] bg-gradient-to-r from-primary to-transparent" />
+            <div className="w-12 h-[2px] bg-gradient-to-l from-primary to-transparent" />
             <span className="text-sm text-primary font-semibold uppercase tracking-wider">
-              Archive
+              ארכיון
             </span>
           </div>
           <h1 className="text-5xl font-bold gradient-text-animated mb-6">
-            All Episodes
+            כל הפרקים
           </h1>
           <p className="text-lg text-muted-foreground/90 leading-relaxed">
-            Dive into our archive of tech battles, framework face-offs, and
-            stack showdowns. Each episode explores the pros, cons, and
-            passionate debates around the tools developers use every day.
+            צללו לתוך הארכיון של קרבות טכנולוגיות, עימותים בין פריימוורקים,
+            ומלחמות סטאקים. כל פרק חוקר את היתרונות, החסרונות, והדיונים הנלהבים
+            סביב הכלים שמפתחים משתמשים בהם יום יום.
           </p>
         </div>
 
@@ -69,15 +69,14 @@ export default async function EpisodesPage() {
                 </svg>
               </div>
               <h2 className="text-2xl font-bold text-foreground mb-4">
-                No Episodes Yet
+                עדיין אין פרקים
               </h2>
               <p className="text-muted-foreground/80 mb-6 leading-relaxed">
-                We&apos;re working on bringing you amazing content. Check back
-                soon for our first episode!
+                אנחנו עובדים על להביא לכם תוכן מדהים. חזרו בקרוב לפרק הראשון
+                שלנו!
               </p>
               <p className="text-sm text-muted-foreground/60">
-                If you&apos;re the site owner, configure your RSS feed URL in
-                the environment variables.
+                אם אתם בעלי האתר, הגדירו את כתובת ה-RSS במשתני הסביבה.
               </p>
             </div>
           </div>
@@ -87,8 +86,7 @@ export default async function EpisodesPage() {
         {episodes.length > 0 && (
           <div className="mt-16 text-center">
             <span className="text-sm text-muted-foreground/60 px-6 py-3 rounded-full bg-secondary/30 border border-primary/10">
-              Showing {episodes.length} episode
-              {episodes.length !== 1 ? "s" : ""}
+              מציג {episodes.length} פרקים
             </span>
           </div>
         )}

@@ -88,34 +88,34 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground/80 max-w-xs leading-relaxed">
-              A podcast exploring the endless battles between technology stacks,
-              frameworks, and the developers who love them.
+              פודקאסט שחוקר את הקרבות האינסופיים בין טכנולוגיות, פריימוורקים,
+              והמפתחים שאוהבים אותם.
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-5">
             <h3 className="text-sm font-bold text-primary uppercase tracking-[0.2em]">
-              Quick Links
+              קישורים מהירים
             </h3>
             <nav className="flex flex-col space-y-3">
               <Link
                 href="/episodes"
-                className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:translate-x-2 w-fit"
+                className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:-translate-x-2 w-fit"
               >
-                All Episodes
+                כל הפרקים
               </Link>
               <Link
                 href="/about"
-                className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:translate-x-2 w-fit"
+                className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:-translate-x-2 w-fit"
               >
-                About
+                אודות
               </Link>
               <Link
                 href="/contact"
-                className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:translate-x-2 w-fit"
+                className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:-translate-x-2 w-fit"
               >
-                Contact
+                צור קשר
               </Link>
             </nav>
           </div>
@@ -123,7 +123,7 @@ export function Footer() {
           {/* Listen On */}
           <div className="space-y-5">
             <h3 className="text-sm font-bold text-primary uppercase tracking-[0.2em]">
-              Listen On
+              האזינו ב-
             </h3>
             <div className="flex flex-wrap gap-3">
               {platformLinks.map((platform) => (
@@ -146,8 +146,7 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-xs text-muted-foreground/60">
-            © {new Date().getFullYear()} Stack Wars Podcast. All rights
-            reserved.
+            © {new Date().getFullYear()} Stack Wars פודקאסט. כל הזכויות שמורות.
           </p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (

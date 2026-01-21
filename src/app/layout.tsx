@@ -16,32 +16,32 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Stack Wars Podcast",
-    template: "%s | Stack Wars Podcast",
+    default: "Stack Wars פודקאסט",
+    template: "%s | Stack Wars פודקאסט",
   },
   description:
-    "A podcast exploring the endless battles between technology stacks, frameworks, and the developers who love them.",
+    "פודקאסט שחוקר את הקרבות האינסופיים בין טכנולוגיות, פריימוורקים, והמפתחים שאוהבים אותם.",
   keywords: [
-    "podcast",
-    "technology",
-    "programming",
-    "software development",
-    "tech stacks",
+    "פודקאסט",
+    "טכנולוגיה",
+    "תכנות",
+    "פיתוח תוכנה",
+    "סטאקים טכנולוגיים",
   ],
-  authors: [{ name: "Stack Wars Podcast" }],
+  authors: [{ name: "Stack Wars פודקאסט" }],
   openGraph: {
     type: "website",
-    locale: "en_US",
-    siteName: "Stack Wars Podcast",
-    title: "Stack Wars Podcast",
+    locale: "he_IL",
+    siteName: "Stack Wars פודקאסט",
+    title: "Stack Wars פודקאסט",
     description:
-      "A podcast exploring the endless battles between technology stacks, frameworks, and the developers who love them.",
+      "פודקאסט שחוקר את הקרבות האינסופיים בין טכנולוגיות, פריימוורקים, והמפתחים שאוהבים אותם.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stack Wars Podcast",
+    title: "Stack Wars פודקאסט",
     description:
-      "A podcast exploring the endless battles between technology stacks, frameworks, and the developers who love them.",
+      "פודקאסט שחוקר את הקרבות האינסופיים בין טכנולוגיות, פריימוורקים, והמפתחים שאוהבים אותם.",
   },
   robots: {
     index: true,
@@ -55,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="he" dir="rtl">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >

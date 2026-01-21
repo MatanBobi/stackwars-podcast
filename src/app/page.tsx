@@ -90,8 +90,8 @@ export default async function HomePage() {
               className="text-xl lg:text-2xl text-muted-foreground/90 mb-12 max-w-2xl animate-slide-up leading-relaxed"
               style={{ animationDelay: "0.2s" }}
             >
-              A podcast exploring the endless battles between technology stacks,
-              frameworks, and the developers who love them.
+              פודקאסט שחוקר את הקרבות האינסופיים בין טכנולוגיות, פריימוורקים,
+              והמפתחים שאוהבים אותם.
             </p>
 
             {/* Platform Links */}
@@ -124,7 +124,7 @@ export default async function HomePage() {
                 size="lg"
                 className="text-lg px-8 py-6 font-semibold tracking-wide shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300"
               >
-                <Link href="/episodes">Browse Episodes</Link>
+                <Link href="/episodes">עיין בפרקים</Link>
               </Button>
               <Button
                 asChild
@@ -132,7 +132,7 @@ export default async function HomePage() {
                 size="lg"
                 className="text-lg px-8 py-6 font-semibold tracking-wide border-2 hover:bg-primary/10 transition-all duration-300"
               >
-                <Link href="/about">About the Show</Link>
+                <Link href="/about">אודות התוכנית</Link>
               </Button>
             </div>
           </div>
@@ -148,18 +148,18 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-16 gap-4">
             <div className="flex items-center gap-4">
               {/* Decorative element */}
-              <div className="hidden sm:block w-12 h-[2px] bg-gradient-to-r from-primary to-transparent" />
+              <div className="hidden sm:block w-12 h-[2px] bg-gradient-to-l from-primary to-transparent" />
               <h2 className="text-4xl lg:text-5xl font-bold gradient-text-animated">
-                Latest Episodes
+                פרקים אחרונים
               </h2>
             </div>
             <Link
               href="/episodes"
               className="group text-sm text-muted-foreground hover:text-primary transition-all duration-300 flex items-center gap-2 px-4 py-2 rounded-full border border-transparent hover:border-primary/30 hover:bg-primary/5"
             >
-              View all episodes{" "}
-              <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
-                →
+              לכל הפרקים{" "}
+              <span className="text-lg transition-transform duration-300 group-hover:-translate-x-1">
+                ←
               </span>
             </Link>
           </div>
@@ -194,10 +194,10 @@ export default async function HomePage() {
                 </svg>
               </div>
               <p className="text-muted-foreground text-lg">
-                No episodes yet. Check back soon!
+                עדיין אין פרקים. חזרו בקרוב!
               </p>
               <p className="text-sm text-muted-foreground mt-2">
-                Configure your RSS feed URL to display episodes.
+                הגדירו את כתובת ה-RSS כדי להציג פרקים.
               </p>
             </div>
           )}
@@ -229,11 +229,11 @@ export default async function HomePage() {
               <div className="w-8 h-[1px] bg-gradient-to-l from-transparent to-primary/50" />
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-5 animate-glow-text">
-              Never Miss an Episode
+              אל תפספסו פרק
             </h2>
             <p className="text-muted-foreground mb-10 text-lg">
-              Subscribe to Stack Wars on your favorite podcast platform and join
-              the battle for tech supremacy.
+              הירשמו ל-Stack Wars בפלטפורמת הפודקאסטים המועדפת עליכם והצטרפו
+              לקרב על השליטה הטכנולוגית.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               {platformLinks.slice(0, 3).map((platform) => (

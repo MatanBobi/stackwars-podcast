@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "אודות",
   description:
-    "Learn about Stack Wars Podcast - the show that explores the battles between technology stacks, frameworks, and the developers who champion them.",
+    "למדו על Stack Wars פודקאסט - התוכנית שחוקרת את הקרבות בין טכנולוגיות, פריימוורקים, והמפתחים שמאמינים בהם.",
 };
 
 export default function AboutPage() {
@@ -18,17 +18,16 @@ export default function AboutPage() {
           {/* Header */}
           <header className="mb-16 animate-slide-up">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-[2px] bg-gradient-to-r from-primary to-transparent" />
+              <div className="w-12 h-[2px] bg-gradient-to-l from-primary to-transparent" />
               <span className="text-sm text-primary font-semibold uppercase tracking-wider">
-                About Us
+                אודותינו
               </span>
             </div>
             <h1 className="text-5xl font-bold gradient-text-animated mb-6">
-              About Stack Wars
+              אודות Stack Wars
             </h1>
             <p className="text-xl text-muted-foreground/90 leading-relaxed">
-              Where technology battles are fought with keyboards, not
-              lightsabers.
+              איפה שקרבות הטכנולוגיה נלחמות במקלדות, לא בחרבות אור.
             </p>
           </header>
 
@@ -54,27 +53,24 @@ export default function AboutPage() {
                     />
                   </svg>
                 </span>
-                The Show
+                התוכנית
               </h2>
               <div className="space-y-5 text-muted-foreground/80 leading-relaxed">
                 <p>
-                  Stack Wars is a podcast dedicated to exploring the endless
-                  debates, discussions, and decisions that developers face when
-                  choosing their technology stacks. From frontend frameworks to
-                  backend languages, databases to deployment platforms — we
-                  cover it all.
+                  Stack Wars הוא פודקאסט המוקדש לחקירת הוויכוחים, הדיונים
+                  וההחלטות האינסופיות שמפתחים מתמודדים איתם בבחירת הסטאקים
+                  הטכנולוגיים שלהם. מפריימוורקי פרונטאנד ועד שפות בקאנד, מסדי
+                  נתונים ופלטפורמות פריסה - אנחנו מכסים הכל.
                 </p>
                 <p>
-                  Each episode dives deep into the pros and cons of different
-                  technologies, featuring real-world experiences, expert
-                  opinions, and sometimes heated discussions about what truly
-                  makes a stack &quot;the best&quot; (spoiler: it depends).
+                  כל פרק צולל לעומק לתוך היתרונות והחסרונות של טכנולוגיות שונות,
+                  כולל חוויות מהעולם האמיתי, דעות מומחים, ולפעמים דיונים סוערים
+                  על מה באמת הופך סטאק ל&quot;הכי טוב&quot; (ספוילר: זה תלוי).
                 </p>
                 <p>
-                  Whether you&apos;re a seasoned architect making enterprise
-                  decisions or a developer curious about the latest trends,
-                  Stack Wars offers insights, entertainment, and maybe a few
-                  laughs along the way.
+                  בין אם אתם ארכיטקטים מנוסים שמקבלים החלטות ארגוניות או מפתחים
+                  סקרנים לגבי הטרנדים האחרונים, Stack Wars מציע תובנות, בידור,
+                  ואולי כמה צחוקים בדרך.
                 </p>
               </div>
             </section>
@@ -101,18 +97,18 @@ export default function AboutPage() {
                     />
                   </svg>
                 </span>
-                What We Cover
+                מה אנחנו מכסים
               </h2>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
-                  "Frontend Frameworks",
-                  "Backend Languages",
-                  "Database Wars",
-                  "Cloud Platforms",
-                  "DevOps Tools",
-                  "API Design",
-                  "Testing Strategies",
-                  "Architecture Patterns",
+                  "פריימוורקי פרונטאנד",
+                  "שפות בקאנד",
+                  "מלחמות מסדי נתונים",
+                  "פלטפורמות ענן",
+                  "כלי DevOps",
+                  "עיצוב API",
+                  "אסטרטגיות בדיקה",
+                  "תבניות ארכיטקטורה",
                 ].map((topic, index) => (
                   <li
                     key={topic}
@@ -148,7 +144,7 @@ export default function AboutPage() {
                     />
                   </svg>
                 </span>
-                The Host
+                המנחה/ת
               </h2>
               <div className="bg-gradient-to-br from-card via-card to-secondary/20 border border-primary/20 rounded-2xl p-8 glow-border">
                 <div className="flex flex-col sm:flex-row gap-8">
@@ -169,14 +165,12 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-foreground mb-3">
-                      Your Host
+                      המנחה/ת שלכם
                     </h3>
                     <p className="text-muted-foreground/80 leading-relaxed">
-                      A passionate developer who has spent years navigating the
-                      ever-changing landscape of technology stacks. With
-                      experience across multiple languages, frameworks, and
-                      platforms, they bring a balanced perspective to the
-                      eternal tech debates.
+                      מפתח/ת נלהב/ת שבילה שנים בניווט בנוף המשתנה תמיד של סטאקים
+                      טכנולוגיים. עם ניסיון במגוון שפות, פריימוורקים ופלטפורמות,
+                      הם מביאים פרספקטיבה מאוזנת לדיונים הטכנולוגיים הנצחיים.
                     </p>
                   </div>
                 </div>
@@ -205,11 +199,11 @@ export default function AboutPage() {
                     />
                   </svg>
                 </span>
-                Subscribe
+                הירשמו
               </h2>
               <p className="text-muted-foreground/80 mb-8 leading-relaxed">
-                Never miss an episode! Stack Wars is available on all major
-                podcast platforms:
+                אל תפספסו פרק! Stack Wars זמין בכל פלטפורמות הפודקאסטים
+                המובילות:
               </p>
               <div className="flex flex-wrap gap-4">
                 {["Apple Podcasts", "Spotify", "YouTube", "RSS Feed"].map(
@@ -221,7 +215,7 @@ export default function AboutPage() {
                     >
                       {platform}
                     </a>
-                  )
+                  ),
                 )}
               </div>
             </section>

@@ -27,7 +27,7 @@ export async function generateMetadata({
 
   if (!episode) {
     return {
-      title: "Episode Not Found",
+      title: "פרק לא נמצא",
     };
   }
 
@@ -52,7 +52,7 @@ export async function generateMetadata({
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("he-IL", {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -107,10 +107,10 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
+                    d="M9 5l7 7-7 7"
                   />
                 </svg>
-                All Episodes
+                כל הפרקים
               </Link>
             </Button>
           </div>
@@ -121,12 +121,12 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
               <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mb-4">
                 {episode.episodeNumber && (
                   <span className="bg-primary/20 text-primary px-3 py-1 rounded-full font-medium">
-                    Episode {episode.episodeNumber}
+                    פרק {episode.episodeNumber}
                   </span>
                 )}
                 {episode.season && (
                   <span className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full">
-                    Season {episode.season}
+                    עונה {episode.season}
                   </span>
                 )}
                 <span>{formatDate(episode.pubDate)}</span>
@@ -153,7 +153,7 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
             {/* Show Notes */}
             <section>
               <h2 className="text-2xl font-semibold text-primary mb-6">
-                Show Notes
+                הערות לתוכנית
               </h2>
               <div
                 className="prose prose-invert prose-primary max-w-none"
@@ -161,7 +161,7 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
               />
               {!episode.content && (
                 <p className="text-muted-foreground italic">
-                  No show notes available for this episode.
+                  אין הערות זמינות לפרק זה.
                 </p>
               )}
             </section>
@@ -172,30 +172,30 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
             <section className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-1">
-                  Enjoyed this episode?
+                  נהניתם מהפרק?
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Share it with your fellow developers!
+                  שתפו אותו עם חבריכם המפתחים!
                 </p>
               </div>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" asChild>
                   <a
                     href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                      `Just listened to "${episode.title}" on Stack Wars Podcast! 🎙️`
+                      `הרגע האזנתי ל"${episode.title}" ב-Stack Wars פודקאסט! 🎙️`,
                     )}&url=${encodeURIComponent(
-                      `${process.env.NEXT_PUBLIC_SITE_URL || ""}/episodes/${episode.slug}`
+                      `${process.env.NEXT_PUBLIC_SITE_URL || ""}/episodes/${episode.slug}`,
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <svg
                       viewBox="0 0 24 24"
-                      className="w-4 h-4 mr-2 fill-current"
+                      className="w-4 h-4 ml-2 fill-current"
                     >
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
-                    Share on X
+                    שתפו ב-X
                   </a>
                 </Button>
               </div>

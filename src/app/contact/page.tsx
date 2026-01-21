@@ -5,9 +5,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "צור קשר",
   description:
-    "Get in touch with Stack Wars Podcast - send us your questions, topic suggestions, or just say hi!",
+    "צרו קשר עם Stack Wars פודקאסט - שלחו לנו שאלות, הצעות לנושאים, או פשוט להגיד שלום!",
 };
 
 export default function ContactPage() {
@@ -17,12 +17,10 @@ export default function ContactPage() {
         <div className="max-w-3xl mx-auto">
           {/* Header */}
           <header className="mb-12 text-center">
-            <h1 className="text-4xl font-bold text-primary mb-4">
-              Get In Touch
-            </h1>
+            <h1 className="text-4xl font-bold text-primary mb-4">צרו קשר</h1>
             <p className="text-xl text-muted-foreground">
-              Have a topic suggestion? Want to be a guest? Just want to say hi?
-              We&apos;d love to hear from you!
+              יש לכם הצעה לנושא? רוצים להיות אורחים? פשוט רוצים להגיד שלום? נשמח
+              לשמוע מכם!
             </p>
           </header>
 
@@ -30,7 +28,7 @@ export default function ContactPage() {
             {/* Contact Form */}
             <Card className="md:col-span-2">
               <CardHeader>
-                <CardTitle className="text-primary">Send a Message</CardTitle>
+                <CardTitle className="text-primary">שלחו הודעה</CardTitle>
               </CardHeader>
               <CardContent>
                 <form className="space-y-6">
@@ -40,12 +38,12 @@ export default function ContactPage() {
                         htmlFor="name"
                         className="text-sm font-medium text-foreground"
                       >
-                        Name
+                        שם
                       </label>
                       <Input
                         id="name"
                         name="name"
-                        placeholder="Your name"
+                        placeholder="השם שלכם"
                         required
                       />
                     </div>
@@ -54,13 +52,13 @@ export default function ContactPage() {
                         htmlFor="email"
                         className="text-sm font-medium text-foreground"
                       >
-                        Email
+                        אימייל
                       </label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="your@email.com"
+                        placeholder="email@example.com"
                         required
                       />
                     </div>
@@ -70,12 +68,12 @@ export default function ContactPage() {
                       htmlFor="subject"
                       className="text-sm font-medium text-foreground"
                     >
-                      Subject
+                      נושא
                     </label>
                     <Input
                       id="subject"
                       name="subject"
-                      placeholder="What's this about?"
+                      placeholder="מה הנושא?"
                       required
                     />
                   </div>
@@ -84,24 +82,23 @@ export default function ContactPage() {
                       htmlFor="message"
                       className="text-sm font-medium text-foreground"
                     >
-                      Message
+                      הודעה
                     </label>
                     <Textarea
                       id="message"
                       name="message"
-                      placeholder="Tell us what's on your mind..."
+                      placeholder="ספרו לנו מה בראשכם..."
                       rows={6}
                       required
                     />
                   </div>
                   <Button type="submit" size="lg" className="w-full sm:w-auto">
-                    Send Message
+                    שלח הודעה
                   </Button>
                 </form>
                 <p className="mt-4 text-sm text-muted-foreground">
-                  Note: This form is for demonstration. To make it functional,
-                  integrate with a service like Formspree, Resend, or your own
-                  backend.
+                  הערה: טופס זה להדגמה. כדי שיעבוד, יש לחבר לשירות כמו
+                  Formspree, Resend, או לבקאנד משלכם.
                 </p>
               </CardContent>
             </Card>
@@ -110,7 +107,7 @@ export default function ContactPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-primary">
-                  Other Ways to Connect
+                  דרכים נוספות ליצירת קשר
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -157,33 +154,33 @@ export default function ContactPage() {
             {/* Topic Suggestions */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-primary">Suggest a Topic</CardTitle>
+                <CardTitle className="text-primary">הציעו נושא</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">
-                  Got a tech battle you want us to cover? We&apos;re always
-                  looking for new topics! Some ideas:
+                  יש לכם קרב טכנולוגי שאתם רוצים שנכסה? אנחנו תמיד מחפשים נושאים
+                  חדשים! כמה רעיונות:
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
-                    Framework vs Framework comparisons
+                    השוואות בין פריימוורקים
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
-                    Language deep dives
+                    צלילות עמוקות לשפות תכנות
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
-                    Architecture pattern debates
+                    דיונים על תבניות ארכיטקטורה
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
-                    Tool and library reviews
+                    סקירות של כלים וספריות
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
-                    Industry trend discussions
+                    דיונים על טרנדים בתעשייה
                   </li>
                 </ul>
               </CardContent>
