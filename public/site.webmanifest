@@ -1,0 +1,25 @@
+{
+  "name": "Stack Wars Podcast",
+  "short_name": "Stack Wars",
+  "description": "פודקאסט בעברית — שני מפתחים מקצוות הסטאק, מתווכחים על טכנולוגיה.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/stack-wars.jpg",
+      "sizes": "1200x1200",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ export const site = {
   tagline: "שני מפתחים מקצוות הסטאק, מתווכחים על טכנולוגיה.",
   longDescription:
     "סטאק וורס הוא פודקאסט בעברית שבו שני מפתחים — אחד מהפרונטאנד, אחד מהבאקאנד — נפגשים כדי לריב. על שפות, פריימוורקים, כלים, AI, וכל מה שמרגיז מפתחים בעבודה. בלי חסויות, בלי ספונסרים, בלי תשובות נכונות.",
-  url: "https://stackwars.dev",
+  url: "https://stackwarspod.com",
   email: "stackwarspodcast@gmail.com",
   feedbackFormUrl: "https://forms.gle/3uBXf8Pa2eHX4yJv6",
   // TODO: ערוך את הביוגרפיות בהתאם — אלו טקסטים זמניים.

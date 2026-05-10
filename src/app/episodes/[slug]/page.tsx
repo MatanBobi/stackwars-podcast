@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { AudioPlayer } from "@/components/AudioPlayer";
+import { PodcastEpisodeJsonLd } from "@/components/JsonLd";
 import { getEpisodeBySlug, getEpisodes, renderShowNotes } from "@/lib/rss";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -34,12 +35,25 @@ export async function generateMetadata({
   return {
     title: episode.title,
     description: episode.description,
+    alternates: {
+      canonical: `/episodes/${episode.slug}`,
+    },
     openGraph: {
       type: "article",
       title: episode.title,
       description: episode.description,
+      url: `/episodes/${episode.slug}`,
       publishedTime: episode.pubDate,
-      images: episode.imageUrl ? [{ url: episode.imageUrl }] : [],
+      images: episode.imageUrl
+        ? [
+            {
+              url: episode.imageUrl,
+              width: 1400,
+              height: 1400,
+              alt: episode.title,
+            },
+          ]
+        : [],
     },
     twitter: {
       card: "summary_large_image",
@@ -70,27 +84,9 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
     notFound();
   }
 
-  // Generate JSON-LD structured data
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "PodcastEpisode",
-    name: episode.title,
-    description: episode.description,
-    datePublished: episode.pubDate,
-    duration: episode.duration,
-    url: episode.audioUrl,
-    partOfSeries: {
-      "@type": "PodcastSeries",
-      name: "Stack Wars Podcast",
-    },
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <PodcastEpisodeJsonLd episode={episode} />
       <div className="min-h-screen py-12">
         <div className="container mx-auto px-4">
           {/* Back Button */}

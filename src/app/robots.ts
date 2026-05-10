@@ -1,13 +1,18 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+import { site } from "@/lib/site";
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || site.url || "https://stackwarspod.com";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://stackwars.dev";
-
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+      },
+    ],
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }
