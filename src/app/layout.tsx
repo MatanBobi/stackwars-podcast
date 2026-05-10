@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { site } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,34 +15,54 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || site.url || "https://stackwars.dev";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Stack Wars פודקאסט",
-    template: "%s | Stack Wars פודקאסט",
+    default: "Stack Wars · פודקאסט בעברית למפתחים",
+    template: "%s · Stack Wars",
   },
-  description:
-    "פודקאסט שחוקר את הקרבות האינסופיים בין טכנולוגיות, פריימוורקים, והמפתחים שאוהבים אותם.",
+  description: site.longDescription,
   keywords: [
     "פודקאסט",
-    "טכנולוגיה",
+    "פודקאסט בעברית",
+    "פודקאסט למפתחים",
     "תכנות",
     "פיתוח תוכנה",
-    "סטאקים טכנולוגיים",
+    "פרונטאנד",
+    "באקאנד",
+    "stack wars",
   ],
-  authors: [{ name: "Stack Wars פודקאסט" }],
+  authors: [{ name: "Stack Wars Podcast" }],
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": site.platforms.rss ?? undefined,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "he_IL",
-    siteName: "Stack Wars פודקאסט",
-    title: "Stack Wars פודקאסט",
-    description:
-      "פודקאסט שחוקר את הקרבות האינסופיים בין טכנולוגיות, פריימוורקים, והמפתחים שאוהבים אותם.",
+    url: SITE_URL,
+    siteName: "Stack Wars",
+    title: "Stack Wars · פודקאסט בעברית למפתחים",
+    description: site.longDescription,
+    images: [
+      {
+        url: "/stack-wars.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Stack Wars Podcast",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stack Wars פודקאסט",
-    description:
-      "פודקאסט שחוקר את הקרבות האינסופיים בין טכנולוגיות, פריימוורקים, והמפתחים שאוהבים אותם.",
+    title: "Stack Wars · פודקאסט בעברית למפתחים",
+    description: site.tagline,
+    images: ["/stack-wars.jpg"],
   },
   robots: {
     index: true,

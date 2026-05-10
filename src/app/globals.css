@@ -593,3 +593,76 @@
 .text-reveal {
   animation: text-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Show-notes rich text */
+.show-notes p {
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.show-notes p:last-child {
+  margin-bottom: 0;
+}
+.show-notes a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 184, 0, 0.4);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+  word-break: break-word;
+}
+.show-notes a:hover {
+  text-decoration-color: rgba(255, 184, 0, 1);
+}
+
+/* Audio player range slider (used inside a forced dir="ltr" container). */
+.sw-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    var(--primary) 0%,
+    var(--primary) var(--pct, 0%),
+    rgba(255, 184, 0, 0.18) var(--pct, 0%),
+    rgba(255, 184, 0, 0.18) 100%
+  );
+  outline: none;
+  cursor: pointer;
+}
+
+.sw-range.sw-range-sm {
+  height: 4px;
+}
+
+.sw-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid #000;
+  box-shadow: 0 0 0 1px rgba(255, 184, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.sw-range:hover::-webkit-slider-thumb,
+.sw-range:focus-visible::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.sw-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid #000;
+  cursor: pointer;
+}
+
+.sw-range::-moz-range-track {
+  background: transparent;
+}

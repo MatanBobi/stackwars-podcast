@@ -2,263 +2,297 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { EpisodeCard } from "@/components/EpisodeCard";
-import { getLatestEpisodes } from "@/lib/rss";
+import { getEpisodes } from "@/lib/rss";
+import { getPlatforms } from "@/lib/platforms";
+import { site } from "@/lib/site";
 
-// Platform links for the hero section
-const platformLinks = [
-  {
-    name: "Apple Podcasts",
-    url: "#",
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-8 w-8 fill-current">
-        <path d="M12.001 2a10 10 0 0 0-10 10 9.93 9.93 0 0 0 2.54 6.65A10.06 10.06 0 0 0 8.998 22a10.06 10.06 0 0 0 6.006 0 10.06 10.06 0 0 0 4.457-3.35A9.93 9.93 0 0 0 22 12a10 10 0 0 0-10-10zm0 2a8 8 0 0 1 8 8 7.95 7.95 0 0 1-2.032 5.32A8.05 8.05 0 0 1 14.4 20a8.05 8.05 0 0 1-4.8 0 8.05 8.05 0 0 1-3.569-2.68A7.95 7.95 0 0 1 4 12a8 8 0 0 1 8-8zm0 3a5 5 0 0 0-5 5c0 1.08.34 2.09.93 2.91a5.004 5.004 0 0 0 2.44 1.81v.01a3 3 0 0 0 3.26 0v-.01a5.004 5.004 0 0 0 2.44-1.81A4.97 4.97 0 0 0 17 12a5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 2.98 2.98 0 0 1-.56 1.74A3 3 0 0 1 12.001 15a3 3 0 0 1-2.44-.74A2.98 2.98 0 0 1 9 12a3 3 0 0 1 3-3zm0 6c.35 0 .69.04 1.02.12a1 1 0 0 1 .68 1.23 1 1 0 0 1-.55.6V19a1.15 1.15 0 0 1-2.3 0v-2.05a1 1 0 0 1-.55-.6 1 1 0 0 1 .68-1.23c.33-.08.67-.12 1.02-.12z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Spotify",
-    url: "#",
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-8 w-8 fill-current">
-        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
-      </svg>
-    ),
-  },
-  {
-    name: "YouTube",
-    url: "#",
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-8 w-8 fill-current">
-        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-      </svg>
-    ),
-  },
-  {
-    name: "RSS",
-    url: "#",
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-8 w-8 fill-current">
-        <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248S0 22.546 0 20.752s1.456-3.248 3.252-3.248 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z" />
-      </svg>
-    ),
-  },
-];
+export const revalidate = 3600;
 
-export const revalidate = 3600; // Revalidate every hour
+function formatLongDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("he-IL", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 export default async function HomePage() {
-  const latestEpisodes = await getLatestEpisodes(3);
+  const allEpisodes = await getEpisodes();
+  const [featured, ...rest] = allEpisodes;
+  const latestEpisodes = rest.slice(0, 3);
+  const platforms = getPlatforms();
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-28 lg:py-48 overflow-hidden hero-bg">
-        {/* Starfield Background */}
+      {/* Hero */}
+      <section className="relative py-20 lg:py-28 overflow-hidden hero-bg">
         <div className="starfield" />
-        {/* Multiple layered gradients for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/15 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,184,0,0.15)_0%,_transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_rgba(255,184,0,0.05)_0%,_transparent_40%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_rgba(255,184,0,0.05)_0%,_transparent_40%)]" />
-
-        {/* Decorative corner accents */}
-        <div className="absolute top-20 left-10 w-20 h-[1px] bg-gradient-to-r from-primary/50 to-transparent" />
-        <div className="absolute top-20 left-10 w-[1px] h-20 bg-gradient-to-b from-primary/50 to-transparent" />
-        <div className="absolute bottom-20 right-10 w-20 h-[1px] bg-gradient-to-l from-primary/50 to-transparent" />
-        <div className="absolute bottom-20 right-10 w-[1px] h-20 bg-gradient-to-t from-primary/50 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,184,0,0.10)_0%,_transparent_60%)]" />
 
         <div className="container mx-auto px-4 relative">
-          <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-            {/* Logo */}
-            <div className="mb-14 relative group animate-float">
-              {/* Multiple glow layers */}
-              <div className="absolute -inset-16 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-1000" />
-              <div className="absolute -inset-8 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all duration-700" />
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+            {/* Cover art */}
+            <div className="relative group mb-10 animate-float">
+              <div className="absolute -inset-10 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-1000" />
+              <div className="absolute -inset-4 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all duration-700" />
               <Image
                 src="/stack-wars.jpg"
                 alt="Stack Wars Podcast"
                 width={380}
                 height={380}
-                className="relative w-80 h-80 lg:w-[420px] lg:h-[420px] rounded-2xl object-cover animate-pulse-glow shadow-2xl shadow-primary/20"
+                className="relative w-56 h-56 lg:w-72 lg:h-72 rounded-2xl object-cover animate-pulse-glow shadow-2xl shadow-primary/20"
                 priority
               />
             </div>
-            <h1 className="sr-only">Stack Wars Podcast</h1>
 
-            {/* Tagline */}
-            <p
-              className="text-xl lg:text-2xl text-muted-foreground/90 mb-12 max-w-2xl animate-slide-up leading-relaxed"
-              style={{ animationDelay: "0.2s" }}
-            >
-              פודקאסט שחוקר את הקרבות האינסופיים בין טכנולוגיות, פריימוורקים,
-              והמפתחים שאוהבים אותם.
-            </p>
-
-            {/* Platform Links */}
             <div
-              className="flex flex-wrap justify-center gap-6 mb-14 animate-slide-up"
-              style={{ animationDelay: "0.4s" }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-bold tracking-widest mb-6 animate-slide-up"
+              style={{ animationDelay: "0.05s" }}
             >
-              {platformLinks.map((platform) => (
-                <a
-                  key={platform.name}
-                  href={platform.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary hover:scale-110 hover:-translate-y-1 transition-all duration-300 p-2 rounded-lg hover:bg-primary/10"
-                  aria-label={`Listen on ${platform.name}`}
-                  title={platform.name}
-                >
-                  {platform.icon}
-                </a>
-              ))}
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              </span>
+              הפודקאסט שבו אף אחד לא צודק
             </div>
 
-            {/* CTA Buttons */}
-            <div
-              className="flex flex-col sm:flex-row gap-5 animate-slide-up"
-              style={{ animationDelay: "0.6s" }}
+            <h1
+              className="text-5xl lg:text-7xl font-black tracking-[0.18em] text-primary logo-glow sw-title leading-none mb-5 animate-slide-up"
+              style={{ animationDelay: "0.1s" }}
             >
-              <Button
-                asChild
-                size="lg"
-                className="text-lg px-8 py-6 font-semibold tracking-wide shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300"
-              >
-                <Link href="/episodes">עיין בפרקים</Link>
-              </Button>
+              STACK WARS
+            </h1>
+
+            <p
+              className="text-xl lg:text-2xl font-semibold text-foreground mb-4 max-w-2xl animate-slide-up leading-snug"
+              style={{ animationDelay: "0.2s" }}
+            >
+              {site.tagline}
+            </p>
+            <p
+              className="text-base lg:text-lg text-muted-foreground/90 mb-8 max-w-2xl animate-slide-up leading-relaxed"
+              style={{ animationDelay: "0.3s" }}
+            >
+              שני מפתחים, אחד מהפרונטאנד ואחד מהבאקאנד, נפגשים לריב על כלים,
+              שפות, פריימוורקים, ו-AI. בלי חסויות, בלי תשובות נכונות.
+            </p>
+
+            <div
+              className="flex flex-col sm:flex-row gap-3 justify-center animate-slide-up"
+              style={{ animationDelay: "0.45s" }}
+            >
+              {featured && (
+                <Button
+                  asChild
+                  size="lg"
+                  className="text-base px-7 py-5 font-semibold shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 gap-2"
+                >
+                  <Link href={`/episodes/${featured.slug}`}>
+                    <svg
+                      className="w-4 h-4 translate-x-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                    להאזין לפרק האחרון
+                  </Link>
+                </Button>
+              )}
               <Button
                 asChild
                 variant="outline"
                 size="lg"
-                className="text-lg px-8 py-6 font-semibold tracking-wide border-2 hover:bg-primary/10 transition-all duration-300"
+                className="text-base px-7 py-5 font-semibold border-2 hover:bg-primary/10 transition-all duration-300"
               >
-                <Link href="/about">אודות התוכנית</Link>
+                <Link href="/episodes">כל הפרקים</Link>
               </Button>
             </div>
+
+            {platforms.length > 0 && (
+              <div
+                className="mt-8 flex flex-wrap items-center justify-center gap-4 animate-slide-up"
+                style={{ animationDelay: "0.6s" }}
+              >
+                <span className="text-xs uppercase tracking-widest text-muted-foreground/70">
+                  זמינים ב:
+                </span>
+                {platforms.map((p) => (
+                  <a
+                    key={p.key}
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary hover:scale-110 transition-all duration-300 p-1.5 rounded-lg hover:bg-primary/10"
+                    aria-label={`האזינו ב-${p.label}`}
+                    title={p.label}
+                  >
+                    <span className="block h-6 w-6">{p.icon}</span>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
 
-      {/* Latest Episodes Section */}
-      <section className="py-28 bg-gradient-to-b from-secondary/50 via-secondary/20 to-transparent relative">
-        {/* Section top divider */}
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      {/* Featured / latest episode */}
+      {featured && (
+        <section className="relative py-12 lg:py-16">
+          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
+                  הפרק האחרון
+                </span>
+                <span className="flex-1 h-[1px] bg-gradient-to-l from-primary/30 to-transparent" />
+              </div>
 
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-16 gap-4">
-            <div className="flex items-center gap-4">
-              {/* Decorative element */}
-              <div className="hidden sm:block w-12 h-[2px] bg-gradient-to-l from-primary to-transparent" />
-              <h2 className="text-4xl lg:text-5xl font-bold gradient-text-animated">
-                פרקים אחרונים
-              </h2>
+              <Link
+                href={`/episodes/${featured.slug}`}
+                className="group block rounded-2xl border border-primary/20 bg-gradient-to-br from-card via-card to-secondary/30 p-6 lg:p-8 glow-border card-hover"
+              >
+                <div className="grid md:grid-cols-[auto,1fr] gap-6 md:gap-8 items-center">
+                  <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto md:mx-0">
+                    <div className="absolute -inset-3 bg-primary/15 rounded-2xl blur-2xl group-hover:bg-primary/25 transition-all duration-700" />
+                    <Image
+                      src={featured.imageUrl || "/stack-wars.jpg"}
+                      alt={featured.title}
+                      width={160}
+                      height={160}
+                      className="relative w-full h-full rounded-xl object-cover shadow-xl shadow-primary/10"
+                    />
+                  </div>
+
+                  <div>
+                    <div
+                      className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mb-3"
+                      dir="ltr"
+                    >
+                      {featured.episodeNumber && (
+                        <span className="bg-primary text-primary-foreground px-2.5 py-1 rounded-full font-bold tracking-wide">
+                          #{featured.episodeNumber}
+                        </span>
+                      )}
+                      <span className="bg-secondary/60 px-2.5 py-1 rounded-full">
+                        {featured.duration}
+                      </span>
+                      <span className="text-muted-foreground/70" dir="rtl">
+                        {formatLongDate(featured.pubDate)}
+                      </span>
+                    </div>
+                    <h3
+                      dir="auto"
+                      className="text-2xl lg:text-3xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-3 leading-snug"
+                    >
+                      {featured.title}
+                    </h3>
+                    <p
+                      dir="auto"
+                      className="text-sm lg:text-base text-muted-foreground/85 line-clamp-3 leading-relaxed mb-5"
+                    >
+                      {featured.description}
+                    </p>
+                    <span className="inline-flex items-center gap-2 text-primary font-semibold text-sm">
+                      <span className="w-9 h-9 rounded-full bg-primary/15 group-hover:bg-primary/30 flex items-center justify-center transition-colors duration-300">
+                        <svg
+                          className="w-4 h-4 translate-x-0.5"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </span>
+                      להאזין עכשיו
+                    </span>
+                  </div>
+                </div>
+              </Link>
             </div>
-            <Link
-              href="/episodes"
-              className="group text-sm text-muted-foreground hover:text-primary transition-all duration-300 flex items-center gap-2 px-4 py-2 rounded-full border border-transparent hover:border-primary/30 hover:bg-primary/5"
-            >
-              לכל הפרקים{" "}
-              <span className="text-lg transition-transform duration-300 group-hover:-translate-x-1">
-                ←
-              </span>
-            </Link>
           </div>
+        </section>
+      )}
 
-          {latestEpisodes.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Previous Episodes */}
+      {latestEpisodes.length > 0 && (
+        <section className="py-20 bg-gradient-to-b from-secondary/30 via-secondary/10 to-transparent relative">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4">
+              <div className="flex items-center gap-4">
+                <div className="hidden sm:block w-12 h-[2px] bg-gradient-to-l from-primary to-transparent" />
+                <h2 className="text-3xl lg:text-4xl font-bold gradient-text-animated">
+                  פרקים קודמים
+                </h2>
+              </div>
+              <Link
+                href="/episodes"
+                className="group text-sm text-muted-foreground hover:text-primary transition-all duration-300 flex items-center gap-2 px-4 py-2 rounded-full border border-transparent hover:border-primary/30 hover:bg-primary/5"
+              >
+                לכל הפרקים{" "}
+                <span className="text-lg transition-transform duration-300 group-hover:-translate-x-1">
+                  ←
+                </span>
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {latestEpisodes.map((episode, index) => (
                 <div
                   key={episode.id}
                   className="animate-slide-up"
-                  style={{ animationDelay: `${index * 0.2}s` }}
+                  style={{ animationDelay: `${index * 0.12}s` }}
                 >
                   <EpisodeCard episode={episode} />
                 </div>
               ))}
             </div>
-          ) : (
-            <div className="text-center py-20">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-secondary/50 flex items-center justify-center">
-                <svg
-                  className="w-10 h-10 text-primary/50"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
-                  />
-                </svg>
-              </div>
-              <p className="text-muted-foreground text-lg">
-                עדיין אין פרקים. חזרו בקרוב!
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                הגדירו את כתובת ה-RSS כדי להציג פרקים.
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
-      {/* Subscribe Section */}
-      <section className="py-24 relative">
-        {/* Decorative background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+      {!featured && (
+        <section className="py-24 text-center text-muted-foreground">
+          עדיין אין פרקים זמינים. כדאי לחזור עוד מעט.
+        </section>
+      )}
 
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-primary/50" />
-              <svg
-                className="w-6 h-6 text-primary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />
-              </svg>
-              <div className="w-8 h-[1px] bg-gradient-to-l from-transparent to-primary/50" />
-            </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-5 animate-glow-text">
-              אל תפספסו פרק
-            </h2>
-            <p className="text-muted-foreground mb-10 text-lg">
-              הירשמו ל-Stack Wars בפלטפורמת הפודקאסטים המועדפת עליכם והצטרפו
-              לקרב על השליטה הטכנולוגית.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              {platformLinks.slice(0, 3).map((platform) => (
-                <Button
-                  key={platform.name}
-                  variant="outline"
-                  asChild
-                  className="gap-3 px-6 py-5 border-2 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300 group"
-                >
-                  <a
-                    href={platform.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+      {/* Subscribe */}
+      {platforms.length > 0 && (
+        <section className="py-20 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+
+          <div className="container mx-auto px-4 relative">
+            <div className="max-w-2xl mx-auto text-center">
+              <h2 className="text-2xl lg:text-3xl font-bold text-primary mb-4">
+                הרשמו, כדי לא לפספס
+              </h2>
+              <p className="text-muted-foreground mb-8 text-base lg:text-lg">
+                בחרו את האפליקציה שלכם, הדליקו פעמון, ולא תפספסו פרק.
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {platforms.map((p) => (
+                  <Button
+                    key={p.key}
+                    variant="outline"
+                    asChild
+                    className="gap-2.5 px-5 py-4 border-2 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300 group"
                   >
-                    <span className="w-5 h-5 group-hover:scale-110 transition-transform duration-300">
-                      {platform.icon}
-                    </span>
-                    {platform.name}
-                  </a>
-                </Button>
-              ))}
+                    <a href={p.url} target="_blank" rel="noopener noreferrer">
+                      <span className="block h-4 w-4 group-hover:scale-110 transition-transform duration-300">
+                        {p.icon}
+                      </span>
+                      {p.label}
+                    </a>
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 }

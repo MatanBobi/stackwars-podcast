@@ -15,15 +15,17 @@ export function Header() {
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
       <div className="container mx-auto flex h-18 items-center justify-between px-4 py-4">
-        <Link href="/" className="flex items-center group">
-          <span className="text-2xl font-black tracking-[0.2em] text-primary logo-glow sw-title">
-            <Image
-              src="/logo.png"
-              alt="Stack Wars Podcast"
-              width={48}
-              height={48}
-              priority
-            />
+        <Link href="/" className="flex items-center gap-3 group" aria-label="Stack Wars - דף הבית">
+          <Image
+            src="/logo.png"
+            alt=""
+            width={42}
+            height={42}
+            priority
+            className="transition-transform duration-300 group-hover:scale-105"
+          />
+          <span className="hidden sm:inline text-lg font-black tracking-[0.22em] text-primary logo-glow sw-title">
+            STACK WARS
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-10">

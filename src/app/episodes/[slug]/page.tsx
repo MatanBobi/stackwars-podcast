@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { AudioPlayer } from "@/components/AudioPlayer";
-import { getEpisodeBySlug, getEpisodes } from "@/lib/rss";
+import { getEpisodeBySlug, getEpisodes, renderShowNotes } from "@/lib/rss";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
@@ -133,10 +133,10 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
                 <span>•</span>
                 <span>{episode.duration}</span>
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4" dir="auto">
                 {episode.title}
               </h1>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-muted-foreground/90 leading-relaxed line-clamp-4" dir="auto">
                 {episode.description}
               </p>
             </header>
@@ -155,11 +155,14 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
               <h2 className="text-2xl font-semibold text-primary mb-6">
                 הערות לתוכנית
               </h2>
-              <div
-                className="prose prose-invert prose-primary max-w-none"
-                dangerouslySetInnerHTML={{ __html: episode.content }}
-              />
-              {!episode.content && (
+              {episode.content ? (
+                <div
+                  className="show-notes max-w-none text-base leading-relaxed text-muted-foreground/90"
+                  dangerouslySetInnerHTML={{
+                    __html: renderShowNotes(episode.content),
+                  }}
+                />
+              ) : (
                 <p className="text-muted-foreground italic">
                   אין הערות זמינות לפרק זה.
                 </p>

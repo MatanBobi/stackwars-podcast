@@ -5,7 +5,7 @@ import { getEpisodes } from "@/lib/rss";
 export const metadata: Metadata = {
   title: "כל הפרקים",
   description:
-    "עיינו בכל הפרקים של Stack Wars פודקאסט - חקירת הקרבות בין טכנולוגיות ופריימוורקים.",
+    "כל הפרקים של Stack Wars פודקאסט. ויכוחים על שפות, פריימוורקים, כלים ו-AI — מהפרק הראשון ועד היום.",
 };
 
 export const revalidate = 3600; // Revalidate every hour
@@ -31,9 +31,8 @@ export default async function EpisodesPage() {
             כל הפרקים
           </h1>
           <p className="text-lg text-muted-foreground/90 leading-relaxed">
-            צללו לתוך הארכיון של קרבות טכנולוגיות, עימותים בין פריימוורקים,
-            ומלחמות סטאקים. כל פרק חוקר את היתרונות, החסרונות, והדיונים הנלהבים
-            סביב הכלים שמפתחים משתמשים בהם יום יום.
+            הארכיון המלא: ויכוחים על שפות, פריימוורקים, כלים, AI, וכל מה
+            שמרגיז מפתחים בעבודה. הפרקים מסודרים מהחדש לישן.
           </p>
         </div>
 

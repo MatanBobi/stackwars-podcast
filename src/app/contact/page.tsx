@@ -1,187 +1,94 @@
 import { Metadata } from "next";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "צור קשר",
+  title: "צרו קשר",
   description:
-    "צרו קשר עם Stack Wars פודקאסט - שלחו לנו שאלות, הצעות לנושאים, או פשוט להגיד שלום!",
+    "יש רעיון לפרק? רוצים להתארח, או סתם להגיד שטעינו? כתבו לנו.",
 };
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          {/* Header */}
           <header className="mb-12 text-center">
-            <h1 className="text-4xl font-bold text-primary mb-4">צרו קשר</h1>
-            <p className="text-xl text-muted-foreground">
-              יש לכם הצעה לנושא? רוצים להיות אורחים? פשוט רוצים להגיד שלום? נשמח
-              לשמוע מכם!
+            <h1 className="text-4xl lg:text-5xl font-bold text-primary mb-4">
+              דברו איתנו
+            </h1>
+            <p className="text-lg text-muted-foreground/90 max-w-2xl mx-auto">
+              יש לכם נושא שאנחנו חייבים לריב עליו? רוצים להתארח? יש לכם דעה
+              חזקה שאנחנו טועים? כל אלה — לכאן.
             </p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Contact Form */}
-            <Card className="md:col-span-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Feedback form (Google Form) */}
+            <Card className="md:col-span-2 border-primary/30">
               <CardHeader>
-                <CardTitle className="text-primary">שלחו הודעה</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="name"
-                        className="text-sm font-medium text-foreground"
-                      >
-                        שם
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        placeholder="השם שלכם"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="email"
-                        className="text-sm font-medium text-foreground"
-                      >
-                        אימייל
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="email@example.com"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="subject"
-                      className="text-sm font-medium text-foreground"
-                    >
-                      נושא
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      placeholder="מה הנושא?"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="message"
-                      className="text-sm font-medium text-foreground"
-                    >
-                      הודעה
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="ספרו לנו מה בראשכם..."
-                      rows={6}
-                      required
-                    />
-                  </div>
-                  <Button type="submit" size="lg" className="w-full sm:w-auto">
-                    שלח הודעה
-                  </Button>
-                </form>
-                <p className="mt-4 text-sm text-muted-foreground">
-                  הערה: טופס זה להדגמה. כדי שיעבוד, יש לחבר לשירות כמו
-                  Formspree, Resend, או לבקאנד משלכם.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Other Ways to Connect */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-primary">
-                  דרכים נוספות ליצירת קשר
+                <CardTitle className="text-primary text-2xl">
+                  הצעות לפרקים ופידבק
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <a
-                  href="#"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                  <span>@stackwarspod</span>
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
-                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-                  </svg>
-                  <span>github.com/stackwars</span>
-                </a>
-                <a
-                  href="mailto:hello@stackwars.dev"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+              <CardContent className="space-y-5">
+                <p className="text-muted-foreground/90">
+                  הדרך הכי מהירה להגיע אלינו: טופס הפידבק שלנו. שולחים, אנחנו
+                  קוראים הכל, וחלק נכנס לפרק הבא.
+                </p>
+                <Button asChild size="lg" className="font-semibold">
+                  <a
+                    href={site.feedbackFormUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <span>hello@stackwars.dev</span>
+                    פתחו את טופס הפידבק
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Email */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-primary">אימייל</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground/85 text-sm">
+                  לפניות ארוכות, שיתופי פעולה, או חברויות חדשות:
+                </p>
+                <a
+                  href={`mailto:${site.email}`}
+                  className="inline-flex items-center gap-2 text-primary hover:underline font-medium break-all"
+                  dir="ltr"
+                >
+                  {site.email}
                 </a>
               </CardContent>
             </Card>
 
-            {/* Topic Suggestions */}
+            {/* Suggested topics */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-primary">הציעו נושא</CardTitle>
+                <CardTitle className="text-primary">רעיונות לפרקים</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  יש לכם קרב טכנולוגי שאתם רוצים שנכסה? אנחנו תמיד מחפשים נושאים
-                  חדשים! כמה רעיונות:
+                <p className="text-muted-foreground/85 mb-3 text-sm">
+                  אם אין לכם רעיון מוכן, הנה כמה כיוונים שעובדים אצלנו טוב:
                 </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    השוואות בין פריימוורקים
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    צלילות עמוקות לשפות תכנות
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    דיונים על תבניות ארכיטקטורה
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    סקירות של כלים וספריות
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    דיונים על טרנדים בתעשייה
-                  </li>
+                <ul className="space-y-2 text-sm text-muted-foreground/85">
+                  {[
+                    "X מול Y (כל שני כלים שאתם מתלבטים ביניהם)",
+                    "טכנולוגיה שמרגיזה אתכם בעבודה",
+                    "כלי שגילית ואי אפשר לחיות בלעדיו",
+                    "טרנד שאתם בטוחים שיתפוצץ",
+                  ].map((t) => (
+                    <li key={t} className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      {t}
+                    </li>
+                  ))}
                 </ul>
               </CardContent>
             </Card>
