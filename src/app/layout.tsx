@@ -22,13 +22,12 @@ const SITE_URL =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Stack Wars · פודקאסט בעברית למפתחים",
+    default: "Stack Wars",
     template: "%s · Stack Wars",
   },
   description: site.longDescription,
   keywords: [
     "פודקאסט",
-    "פודקאסט בעברית",
     "פודקאסט למפתחים",
     "תכנות",
     "פיתוח תוכנה",
@@ -48,7 +47,7 @@ export const metadata: Metadata = {
     locale: "he_IL",
     url: SITE_URL,
     siteName: "Stack Wars",
-    title: "Stack Wars · פודקאסט בעברית למפתחים",
+    title: "Stack Wars",
     description: site.longDescription,
     images: [
       {
@@ -61,7 +60,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stack Wars · פודקאסט בעברית למפתחים",
+    title: "Stack Wars",
     description: site.tagline,
     images: ["/stack-wars.jpg"],
   },
@@ -77,10 +76,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/logo.png", type: "image/png" },
-    ],
+    icon: [{ url: "/favicon.ico" }, { url: "/logo.png", type: "image/png" }],
     apple: "/logo.png",
   },
   manifest: "/site.webmanifest",
