@@ -95,7 +95,7 @@ export function Footer() {
             © {new Date().getFullYear()} Stack Wars Podcast. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground/60">
-            נבנה באהבה, נפרס ב-Vercel.
+            נבנה באהבה.
           </p>
         </div>
       </div>

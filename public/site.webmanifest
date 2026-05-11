@@ -1,7 +1,7 @@
 {
   "name": "Stack Wars Podcast",
   "short_name": "Stack Wars",
-  "description": "פודקאסט בעברית — שני מפתחים מקצוות הסטאק, מתווכחים על טכנולוגיה.",
+  "description": "שני מפתחים מקצוות הסטאק, מתווכחים על טכנולוגיה.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",

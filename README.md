@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stack Wars Podcast
 
-## Getting Started
+הפודקאסט שבו אף אחד לא צודק. שני מפתחים מקצוות הסטאק, מתווכחים על טכנולוגיה.
 
-First, run the development server:
+This is the source for [stackwarspod.com](https://stackwarspod.com), the marketing + episode browser site for the Stack Wars podcast. Episodes are pulled live from the show's RSS feed at build time and revalidated hourly.
+
+## Tech
+
+- **Next.js 16** (App Router, Turbopack) on **React 19**
+- **Tailwind CSS v4** with shadcn-style primitives
+- **TypeScript** strict mode
+- RSS ingestion via [`rss-parser`](https://www.npmjs.com/package/rss-parser)
+
+## Local development
 
 ```bash
+npm install
+cp .env.example .env.local   # then fill in the values below
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Name | Description |
+| --- | --- |
+| `RSS_FEED_URL` | The podcast's RSS feed URL. Required. |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL used for OG tags, sitemap and JSON-LD. Defaults to `https://stackwarspod.com`. |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Useful scripts
 
-## Learn More
+```bash
+npm run dev      # local dev server
+npm run build    # production build
+npm run start    # run the production build locally
+npm run lint     # eslint
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project layout
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app/` — App Router pages, `robots.ts`, `sitemap.ts`
+- `src/components/` — UI components (`AudioPlayer`, `EpisodeCard`, `JsonLd`, …)
+- `src/lib/site.ts` — single source of truth for show metadata (hosts, platforms, copy)
+- `src/lib/rss.ts` — feed fetching, slug generation, show-notes rendering
+- `public/` — static assets (cover art, favicon, web manifest)
