@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     description: site.longDescription,
     images: [
       {
-        url: "/stack-wars.jpg",
+        url: "/stackwars.png",
         width: 1200,
         height: 1200,
         alt: "Stack Wars Podcast",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Stack Wars",
     description: site.tagline,
-    images: ["/stack-wars.jpg"],
+    images: ["/stackwars.png"],
   },
   robots: {
     index: true,

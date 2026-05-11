@@ -27,7 +27,7 @@ export function PodcastSeriesJsonLd() {
     description: site.longDescription,
     url: SITE_URL,
     inLanguage: "he",
-    image: `${SITE_URL}/stack-wars.jpg`,
+    image: `${SITE_URL}/stackwars.png`,
     webFeed: site.platforms.rss ?? undefined,
     author: site.hosts.map((h) => ({ "@type": "Person", name: h.name })),
     sameAs: [

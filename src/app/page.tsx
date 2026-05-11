@@ -38,7 +38,7 @@ export default async function HomePage() {
               <div className="absolute -inset-10 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-1000" />
               <div className="absolute -inset-4 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all duration-700" />
               <Image
-                src="/stack-wars.jpg"
+                src="/stackwars.png"
                 alt="Stack Wars Podcast"
                 width={380}
                 height={380}
@@ -159,7 +159,7 @@ export default async function HomePage() {
                   <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto md:mx-0">
                     <div className="absolute -inset-3 bg-primary/15 rounded-2xl blur-2xl group-hover:bg-primary/25 transition-all duration-700" />
                     <Image
-                      src={featured.imageUrl || "/stack-wars.jpg"}
+                      src={featured.imageUrl || "/stackwars.png"}
                       alt={featured.title}
                       width={160}
                       height={160}

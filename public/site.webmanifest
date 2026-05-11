@@ -16,9 +16,9 @@
       "purpose": "any"
     },
     {
-      "src": "/stack-wars.jpg",
+      "src": "/stackwars.png",
       "sizes": "1200x1200",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any"
     }
   ]
