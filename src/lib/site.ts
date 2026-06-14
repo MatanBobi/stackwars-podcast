@@ -18,7 +18,7 @@ export const site = {
     {
       name: "מתן בורנקראוט",
       role: "מפתח פרונטאנד",
-      bio: "מאמין שמסך עם פיקסלים תמיד ינצח מסך עם טקסט. כותב, מעצב ומריב על UI כבר שנים.",
+      bio: "מאמין שמסך עם פיקסלים תמיד ינצח מסך עם טקסט. כותב, מעצב ורב על UI כבר שנים.",
     },
   ],
   // Listen-on links. Comment out / leave as null until URL is confirmed.
